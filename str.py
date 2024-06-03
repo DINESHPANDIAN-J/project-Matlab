@@ -3,20 +3,6 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 import numpy as np
 
-import requests
-
-def download_model(url, dest_path):
-    response = requests.get(url, stream=True)
-    total_size = int(response.headers.get('content-length', 0))
-    block_size = 1024  # 1 Kibibyte
-    with open(dest_path, 'wb') as file:
-        for data in response.iter_content(block_size):
-            file.write(data)
-    print(f"Downloaded {dest_path}")
-
-# Example usage
-download_model("https://drive.google.com/file/d/1H7QovdaXpOEPKagdVDrZb06T6t8NAIpD/view?usp=sharing", "rice_leaf_3_7_model.h5")
-
 # Load the saved model
 model = load_model('rice_leaf_3_7_model.h5')
 
